@@ -1,16 +1,16 @@
 import React from 'react'
 import './HomeView.scss'
-import CommentList from './CommentList.js'
-import VideoPlayer from './VideoPlayer.js'
+import SearchBar from './SearchBar'
+import CommentList from './CommentList'
+import VideoPlayer from './VideoPlayer'
 import CommentBar from './CommentBar.js'
 
 class HomeView extends React.Component {
-  
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
-      videoId : "-2U0Ivkn2Ds",
+      videoId : '-2U0Ivkn2Ds',
       container: 'youtube-player',
       currentTime: 0,
       commentList: [
@@ -26,7 +26,6 @@ class HomeView extends React.Component {
       currentComment: []
     }
   }
-
   updateComment = (currentTime) => {
     currentTime *= 1000;
     this.setState({
@@ -36,17 +35,21 @@ class HomeView extends React.Component {
       })
     });
   }
-
   render () {
     return (
       <div>
         <h4>Welcome to YouTime</h4>
+        <SearchBar SearchVideo={this.props.SearchVideo} />
         <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} />
         <CommentList commentList={this.state.commentList} />
         <CommentBar currentComment={this.state.currentComment}/>
       </div>
     )
   }
+}
+
+HomeView.propTypes = {
+  SearchVideo: React.PropTypes.func
 }
 
 export default HomeView
