@@ -125,13 +125,15 @@ class HomeView extends React.Component {
   }
 
   commentClickHandler = (comment) => {
-    console.log("met qua nha", comment)
     this.setState({
-      seekTo: comment.time/1000
+      seekTo: comment.time==0? 1: comment.time/1000,
+      justSeek: true
     })
   }
-
-  render () {
+  changeJustSeek = (justSeek) => {
+    this.setState({ justSeek: justSeek })
+  }
+  render() {
     return (
       <div>
         <div className='Menu u-margin-bottom--24'>
@@ -144,6 +146,8 @@ class HomeView extends React.Component {
             container={this.state.container}
             updateComment={this.updateComment}
             seekTo={this.state.seekTo}
+            justSeek={this.state.justSeek}
+            changeJustSeek={this.changeJustSeek}
           />
           <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler}/>
         </div>

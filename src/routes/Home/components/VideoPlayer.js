@@ -25,9 +25,6 @@ class VideoPlayer extends React.Component {
       this.updateVideo()
       return
     }
-    if (this.seekTo !== this.props.seekTo) {
-      this.internalPlayer.seekTo(this.props.seekTo)
-    }
   }
 
   updateComment () {
@@ -64,7 +61,12 @@ class VideoPlayer extends React.Component {
   }
 
   render () {
-    return (
+      if(this.props.justSeek && this.props.seekTo != 0 && this.internalPlayer)
+      {
+        this.internalPlayer.seekTo(this.props.seekTo)
+        this.props.changeJustSeek(false)
+      }
+      return (
       <div className="ViewBox-video">
         <div id={this.props.container}>
         </div>
