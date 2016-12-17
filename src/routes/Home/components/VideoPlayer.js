@@ -1,5 +1,5 @@
 import React from 'react'
-import youTubePlayer from 'youtube-player' 
+import youTubePlayer from 'youtube-player'
 
 function shouldUpdateVideo(prevProps, props) {
   if (prevProps.videoId !== props.videoId){
@@ -12,10 +12,10 @@ class VideoPlayer extends React.Component {
 
   constructor (props) {
     super(props)
-    
+
     this.internalPlayer = null
   }
-  
+
   componentDidMount() {
     this.createPlayer()
   }
@@ -68,10 +68,10 @@ class VideoPlayer extends React.Component {
 
   render () {
     return (
-      <span>
+      <div className="ViewBox-video">
         <div id={this.props.container}>
-        </div>  
-      </span>
+        </div>
+      </div>
     )
   }
 }

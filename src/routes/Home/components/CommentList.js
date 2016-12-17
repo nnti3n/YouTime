@@ -3,28 +3,20 @@ import React from 'react'
 
 let id = 0;
 class CommentList extends React.Component {
-  
-  constructor (props) {
-    super(props)
-  }
-  
-  render() {
+
+  render () {
     return (
-      <div>
-        {
-          this.props.commentList
-            ? <table>
-                <tbody>
-                  {
-                    this.props.commentList.map(comment =>
-                      <tr key = {id++} >
-                        <td onClick={() => (this.props.commentClickHandler(comment))}>{comment.content}</td>
-                      </tr>
-                    )
-                  }
-                </tbody>
-              </table>
-            : ' ' }
+      <div className='ViewBox-comments'>
+        <ul>
+          {
+            this.props.commentList
+              ? this.props.commentList.map(comment =>
+                <li key={id++} onClick={() => (this.props.commentClickHandler(comment))}>
+                  {comment.content}
+                </li>
+                )
+              : ' ' }
+        </ul>
       </div>
     )
   }

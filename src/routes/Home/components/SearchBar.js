@@ -20,14 +20,13 @@ class SearchBar extends React.Component {
 
   _onEnter (event) {
     if (event.charCode === 13) {
-      console.log('entered')
       this.props.SearchVideo(this.state.typed)
     }
   }
 
   render () {
     return (
-      <div className='input-group stylish-input-group'>
+      <div className='SearchBar Menu-item input-group stylish-input-group'>
         <input
           type='text'
           className='form-control'

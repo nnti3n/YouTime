@@ -1,0 +1,22 @@
+$values: (0, 6, 12, 18, 24, 36, 48, 72);
+
+@each $value in $values {
+  .u-margin-bottom--#{$value} {
+    margin-bottom: $value * 1px !important;
+  }
+}
+
+@each $value in $values {
+  .u-margin-both--#{$value} {
+    margin-top: $value * 1px !important;
+    margin-bottom: $value * 1px !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  @each $value in $values {
+    .u-sm-margin-bottom--#{$value} {
+      margin-bottom: $value * 1px !important;
+    }
+  }
+}
