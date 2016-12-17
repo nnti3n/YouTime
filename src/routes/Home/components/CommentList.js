@@ -18,7 +18,7 @@ class CommentList extends React.Component {
                   {
                     this.props.commentList.map(comment =>
                       <tr key = {id++} >
-                        <td>{comment.content}</td>
+                        <td onClick={() => (this.props.commentClickHandler(comment))}>{comment.content}</td>
                       </tr>
                     )
                   }

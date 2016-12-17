@@ -23,7 +23,10 @@ class VideoPlayer extends React.Component {
   componentDidUpdate(prevProps) {
     if (shouldUpdateVideo(prevProps, this.props)) {
       this.updateVideo()
+      return
     }
+
+    this.internalPlayer.seekTo(this.props.videoTime)
   }
 
   updateComment () {
@@ -59,7 +62,9 @@ class VideoPlayer extends React.Component {
     this.internalPlayer.on('stateChange', this.onPlayerStateChange)
   }
 
-  
+  seekTo(time) {
+    this.internalPlayer.seekTo(time) 
+  } 
 
   render () {
     return (

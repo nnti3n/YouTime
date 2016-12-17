@@ -18,15 +18,16 @@ class HomeView extends React.Component {
       commentList: [
         {
           content: "1st comment",
-          time: 1500 // at 1.5 sec or 1500 milisec
+          time: 5 // at 1.5 sec or 1500 milisec
         },
         {
           content: "2nd comment",
-          time: 3000 // at 1.5 sec or 1500 milisec
+          time: 10 // at 1.5 sec or 1500 milisec
         }
       ],
       currentComment: [],
-      videoRemoteId: ''
+      videoRemoteId: '',
+      videoTime: 0
     }
   }
 
@@ -56,7 +57,8 @@ class HomeView extends React.Component {
       var regex = /(.+(\?v=|\/))|((\?|&).+)/g
       var videoId = link.replace(regex, '') 
       this.setState({
-        videoId: videoId 
+        videoId: videoId,
+        videoTime: 0
       })
       this.fetchVideoComment(videoId)
     } else {
@@ -64,13 +66,19 @@ class HomeView extends React.Component {
     }
   }
 
+  commentClickHandler = (comment) => {
+    this.setState({
+      videoTime: comment.time
+    })
+  }
+
   render () {
     return (
       <div>
         <h4>Welcome to YouTime</h4>
         <SearchBar SearchVideo={this.SearchVideo} />
-        <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} />
-        <CommentList commentList={this.state.commentList} />
+        <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} videoTime={this.state.videoTime}/>
+        <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler}/>
         <CommentBar currentComment={this.state.currentComment}/>
       </div>
     )
