@@ -5,6 +5,8 @@ import CommentList from './CommentList'
 import VideoPlayer from './VideoPlayer'
 import CommentBar from './CommentBar.js'
 
+const YOUTIME_API = `http://youtime.herokuapp.com`
+  
 class HomeView extends React.Component {
   constructor (props) {
     super(props)
@@ -23,7 +25,8 @@ class HomeView extends React.Component {
           time: 3000 // at 1.5 sec or 1500 milisec
         }
       ],
-      currentComment: []
+      currentComment: [],
+      videoRemoteId: ''
     }
   }
 
@@ -37,6 +40,17 @@ class HomeView extends React.Component {
     })
   }
 
+  fetchVideoComment(videoId) {
+    fetch(YOUTIME_API + `/video/link?site=youtube&id=${videoId}`)
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({
+          videoRemoteId: data.id,
+          commentList: data.comment
+        })
+      })
+  }
+
   SearchVideo = (link) => {
     if (link.indexOf('youtube') !== -1 || link.indexOf('youtu.be') !== -1) {
       var regex = /(.+(\?v=|\/))|((\?|&).+)/g
@@ -44,6 +58,7 @@ class HomeView extends React.Component {
       this.setState({
         videoId: videoId 
       })
+      this.fetchVideoComment(videoId)
     } else {
       return 
     }
