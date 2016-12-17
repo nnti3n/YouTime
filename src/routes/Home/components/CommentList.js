@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+let id = 0;
 class CommentList extends React.Component {
 
   render () {
@@ -9,7 +11,7 @@ class CommentList extends React.Component {
           {
             this.props.commentList
               ? this.props.commentList.map(comment =>
-                <li key={comment.id} >
+                <li key={id++} >
                   {comment.content}
                 </li>
                 )

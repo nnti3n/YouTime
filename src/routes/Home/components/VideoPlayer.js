@@ -1,6 +1,13 @@
 import React from 'react'
 import youTubePlayer from 'youtube-player'
 
+function shouldUpdateVideo(prevProps, props) {
+  if (prevProps.videoId !== props.videoId){
+    return true
+  }
+  return false
+}
+
 class VideoPlayer extends React.Component {
 
   constructor (props) {
@@ -13,8 +20,24 @@ class VideoPlayer extends React.Component {
     this.createPlayer()
   }
 
+  componentDidUpdate(prevProps) {
+    if (shouldUpdateVideo(prevProps, this.props)) {
+      this.updateVideo()
+    }
+  }
+
   updateComment () {
     this.props.updateComment(this.currentTime)
+  }
+
+  updateVideo() {
+    if (typeof(this.props.videoId) === 'undefined' || !this.props.videoId) {
+      this.internalPlayer.stopVideo()
+      return
+    }
+    this.internalPlayer.cueVideoById({
+      videoId: this.props.videoId
+    })
   }
 
   onPlayerStateChange = (event) => {

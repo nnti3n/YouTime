@@ -5,6 +5,8 @@ import CommentList from './CommentList'
 import VideoPlayer from './VideoPlayer'
 import CommentBar from './CommentBar.js'
 
+const YOUTIME_API = `http://youtime.herokuapp.com`
+
 class HomeView extends React.Component {
   constructor (props) {
     super(props)
@@ -17,13 +19,44 @@ class HomeView extends React.Component {
         {
           content: "1st comment",
           time: 1500 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1510 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1520 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1530 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1540 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1550 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1560 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1570 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1580 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1800 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1700 // at 1.5 sec or 1500 milisec
         },
         {
           content: "2nd comment",
           time: 3000 // at 1.5 sec or 1500 milisec
         }
       ],
-      currentComment: []
+      currentComment: [],
+      videoRemoteId: ''
     }
   }
 
@@ -34,8 +67,54 @@ class HomeView extends React.Component {
       currentComment: this.state.commentList.filter((data) => {
         return (data.time <= currentTime) && data.time + 5000 >= currentTime
       })
-    });
+    })
   }
+  postComment = (commentObject, callback) => {
+    var option = {
+      method: 'POST',
+      body: JSON.stringify(commentObject),
+      mode: 'cors',
+      headers: new Headers({"Content-Type": "application/json"})
+    }
+    fetch(YOUTIME_API + "/video/" + this.state.videoRemoteId, option)
+      .then(res => {
+        if (res.ok) {
+          res.json().then((data) => {
+            this.setState({
+              commentList: this.state.commentList.push(data)
+            })
+            callback(null, commentObject);
+          })
+        }else{
+          callback("CONNECT_ERROR")
+        }
+      })
+
+  }
+  fetchVideoComment(videoId) {
+    fetch(YOUTIME_API + `/video/link?site=youtube&id=${videoId}`)
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({
+          videoRemoteId: data.id,
+          commentList: data.comment
+        })
+      })
+  }
+
+  SearchVideo = (link) => {
+    if (link.indexOf('youtube') !== -1 || link.indexOf('youtu.be') !== -1) {
+      var regex = /(.+(\?v=|\/))|((\?|&).+)/g
+      var videoId = link.replace(regex, '')
+      this.setState({
+        videoId: videoId
+      })
+      this.fetchVideoComment(videoId)
+    } else {
+      return
+    }
+  }
+
   render () {
     return (
       <div>
@@ -49,9 +128,13 @@ class HomeView extends React.Component {
             container={this.state.container}
             updateComment={this.updateComment}
           />
-          <CommentList commentList={this.state.commentList} />
+          <CommentList />
         </div>
-        <CommentBar currentComment={this.state.currentComment}/>
+        <CommentBar
+          currentComment={this.state.currentComment}
+          currentTime={this.state.currentTime}
+          postComment={this.postComment}
+        />
       </div>
     )
   }
