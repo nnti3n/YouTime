@@ -105,6 +105,7 @@ class HomeView extends React.Component {
 
   SearchVideo = (link) => {
     if (link.indexOf('youtube') !== -1 || link.indexOf('youtu.be') !== -1) {
+      console.log('123')
       var regex = /(.+(\?v=|\/))|((\?|&).+)/g
       var videoId = link.replace(regex, '')
       this.setState({
@@ -114,6 +115,7 @@ class HomeView extends React.Component {
       })
       this.fetchVideoComment(videoId)
     } else {
+      console.log('invalid url')
       return
     }
   }
@@ -129,7 +131,7 @@ class HomeView extends React.Component {
       <div>
         <div className='Menu u-margin-bottom--24'>
           <h4 className='Menu-title'>YouTime</h4>
-          <SearchBar SearchVideo={this.props.SearchVideo} />
+          <SearchBar SearchVideo={this.SearchVideo} />
         </div>
         <div className='ViewBox u-margin-bottom--24'>
           <VideoPlayer
