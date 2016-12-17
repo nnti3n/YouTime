@@ -57,8 +57,13 @@ class HomeView extends React.Component {
       ],
       currentComment: [],
       videoRemoteId: '',
-      videoTime: 0
+      seekTo: 0
     }
+    this.commentClickHandler = this.commentClickHandler.bind(this)
+    this.updateComment = this.updateComment.bind(this)
+    this.postComment = this.postComment.bind(this)
+    this.fetchVideoComment = this.fetchVideoComment.bind(this)
+    this.SearchVideo = this.SearchVideo.bind(this)
   }
 
   updateComment = (currentTime) => {
@@ -105,7 +110,6 @@ class HomeView extends React.Component {
 
   SearchVideo = (link) => {
     if (link.indexOf('youtube') !== -1 || link.indexOf('youtu.be') !== -1) {
-      console.log('123')
       var regex = /(.+(\?v=|\/))|((\?|&).+)/g
       var videoId = link.replace(regex, '')
       this.setState({
@@ -121,8 +125,9 @@ class HomeView extends React.Component {
   }
 
   commentClickHandler = (comment) => {
+    console.log("met qua nha", comment)
     this.setState({
-      videoTime: comment.time
+      seekTo: comment.time
     })
   }
 
@@ -138,6 +143,7 @@ class HomeView extends React.Component {
             videoId={this.state.videoId}
             container={this.state.container}
             updateComment={this.updateComment}
+            seekTo={this.state.seekTo}
           />
           <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler}/>
         </div>
