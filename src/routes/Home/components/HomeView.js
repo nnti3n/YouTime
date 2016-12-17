@@ -17,6 +17,36 @@ class HomeView extends React.Component {
         {
           content: "1st comment",
           time: 1500 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1510 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1520 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1530 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1540 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1550 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1560 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1570 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1580 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1800 // at 1.5 sec or 1500 milisec
+        },{
+          content: "1st comment",
+          time: 1700 // at 1.5 sec or 1500 milisec
         },
         {
           content: "2nd comment",
@@ -36,14 +66,25 @@ class HomeView extends React.Component {
       })
     });
   }
+
+  postComment = (currentTime) => {
+    currentTime *= 1000;
+    this.setState({
+      currentTime: currentTime,
+      currentComment: this.state.commentList.filter((data) => {
+        return (data.time <= currentTime) && data.time + 5000 >= currentTime
+      })
+    });
+  }
+
   render () {
     return (
       <div>
         <h4>Welcome to YouTime</h4>
         <SearchBar SearchVideo={this.props.SearchVideo} />
-        <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} />
-        <CommentList commentList={this.state.commentList} />
-        <CommentBar currentComment={this.state.currentComment}/>
+        <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} postComment={}/>
+        <CommentList />
+        <CommentBar currentTime={this.state.currentTime} currentComment={this.state.currentComment}/>
       </div>
     )
   }
