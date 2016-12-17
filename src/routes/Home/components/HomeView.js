@@ -39,7 +39,7 @@ class HomeView extends React.Component {
     return (
       <div>
         <h4>Welcome to YouTime</h4>
-        <SearchBar />
+        <SearchBar SearchVideo={this.props.SearchVideo} />
         <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} />
         <CommentList commentList={this.state.commentList} />
       </div>
