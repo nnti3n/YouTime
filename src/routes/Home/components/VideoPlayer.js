@@ -26,8 +26,7 @@ class VideoPlayer extends React.Component {
       return
     }
     if (this.seekTo !== this.props.seekTo) {
-      this.internalPlayer.seekTo(this.props.seekTime)
-      this.seekTo = this.props.seekTo
+      this.internalPlayer.seekTo(this.props.seekTo)
     }
   }
 

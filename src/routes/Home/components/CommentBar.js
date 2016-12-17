@@ -24,13 +24,17 @@ class CommentBar extends React.Component {
             });
         }
     }
-    render = () => (<div>
+    render = () => {
+      const {currentComment, currentTime} = this.props
+      return (<div>
         { this.props.currentComment
-            ? this.props.currentComment.map((comment) => (<li key={id++}>{comment.content}</li>)) : ''
+            ? currentComment.map((comment) => (<li key={currentComment.indexOf(comment)}>{comment.content}</li>)) : ''
         }
-        <span>{toStringTime(this.props.currentTime)}</span><input type="text" onKeyPress={this._onEnter}/>
+        <span>{toStringTime(currentTime)}</span><input type="text" onKeyPress={this._onEnter}/>
     </div>)
+    }
 }
+
 function toStringTime(currentTime) {
     var currentTimeInSec = Math.floor(currentTime / 1000);
     var currentTimeInHour = (Math.floor(currentTimeInSec / 3600) + ":") || "";

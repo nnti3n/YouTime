@@ -52,7 +52,7 @@ class HomeView extends React.Component {
         },
         {
           content: "2nd comment",
-          time: 10 // at 1.5 sec or 1500 milisec
+          time: 10000 // at 1.5 sec or 1500 milisec
         }
       ],
       currentComment: [],
@@ -127,7 +127,7 @@ class HomeView extends React.Component {
   commentClickHandler = (comment) => {
     console.log("met qua nha", comment)
     this.setState({
-      seekTo: comment.time
+      seekTo: comment.time/1000
     })
   }
 

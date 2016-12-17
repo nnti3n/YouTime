@@ -1,11 +1,6 @@
 import React from 'react'
 
-
-let id = 0;
 class CommentList extends React.Component {
-  _onClick = (event) => {
-    console.log(event)
-  }
 
   render () {
     const {commentList, commentClickHandler} = this.props
@@ -15,7 +10,7 @@ class CommentList extends React.Component {
           {
             commentList
               ? commentList.map(comment =>
-                <li key={id++} onClick={this._onClick}>
+                <li key={commentList.indexOf(comment)} onClick={() => commentClickHandler(comment)}>
                   {comment.content}
                 </li>, this
                 )
