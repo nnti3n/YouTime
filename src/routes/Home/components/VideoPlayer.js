@@ -18,11 +18,9 @@ class VideoPlayer extends React.Component {
   }
 
   onPlayerStateChange = (event) => {
-    console.log(event)
     if(event.target.getPlayerState() === 1) {
       this.interval = setInterval(() => {
         this.currentTime = event.target.getCurrentTime()
-        console.log(this)
         this.updateComment()
       }, 100)
     }
