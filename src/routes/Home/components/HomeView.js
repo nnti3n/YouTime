@@ -34,13 +34,26 @@ class HomeView extends React.Component {
       currentComment: this.state.commentList.filter((data) => {
         return (data.time <= currentTime) && data.time + 5000 >= currentTime
       })
-    });
+    })
   }
+
+  SearchVideo = (link) => {
+    if (link.indexOf('youtube') !== -1 || link.indexOf('youtu.be') !== -1) {
+      var regex = /(.+(\?v=|\/))|((\?|&).+)/g
+      var videoId = link.replace(regex, '') 
+      this.setState({
+        videoId: videoId 
+      })
+    } else {
+      return 
+    }
+  }
+
   render () {
     return (
       <div>
         <h4>Welcome to YouTime</h4>
-        <SearchBar SearchVideo={this.props.SearchVideo} />
+        <SearchBar SearchVideo={this.SearchVideo} />
         <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} />
         <CommentList commentList={this.state.commentList} />
         <CommentBar currentComment={this.state.currentComment}/>
