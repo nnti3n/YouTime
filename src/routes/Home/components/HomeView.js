@@ -14,18 +14,22 @@ class HomeView extends React.Component {
       commentList: [
         {
           content: "hic",
+          time: 1,
           id: 0
         },
         {
           content: "hic1",
+          time: 2,
           id: 1
         },
         {
           content: "hic2",
+          time: 4,
           id: 2
         },
         {
           content: "hic3",
+          time: 5,
           id: 3
         }
       ]
@@ -33,7 +37,7 @@ class HomeView extends React.Component {
   }
   
   updateComment(currentTime) {
-    console.log(currentTime)
+
   }
 
   render () {

@@ -10,11 +10,11 @@ class CommentList extends React.Component {
     return (
       <div>
         {
-          this.props.comment_list
+          this.props.commentList
             ? <table>
                 <tbody>
                   {
-                    this.props.comment_list.map(comment =>
+                    this.props.commentList.map(comment =>
                       <tr key = {comment.id} >
                         <td>{comment.content}</td>
                       </tr>
