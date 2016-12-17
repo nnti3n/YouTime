@@ -39,10 +39,18 @@ class HomeView extends React.Component {
   render () {
     return (
       <div>
-        <h4>Welcome to YouTime</h4>
-        <SearchBar SearchVideo={this.props.SearchVideo} />
-        <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} />
-        <CommentList commentList={this.state.commentList} />
+        <div className='Menu u-margin-bottom--24'>
+          <h4 className='Menu-title'>YouTime</h4>
+          <SearchBar SearchVideo={this.props.SearchVideo} />
+        </div>
+        <div className='ViewBox u-margin-bottom--24'>
+          <VideoPlayer
+            videoId={this.state.videoId}
+            container={this.state.container}
+            updateComment={this.updateComment}
+          />
+          <CommentList commentList={this.state.commentList} />
+        </div>
         <CommentBar currentComment={this.state.currentComment}/>
       </div>
     )

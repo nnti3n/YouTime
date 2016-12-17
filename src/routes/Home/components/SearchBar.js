@@ -27,7 +27,7 @@ class SearchBar extends React.Component {
 
   render () {
     return (
-      <div className='input-group stylish-input-group'>
+      <div className='SearchBar Menu-item input-group stylish-input-group'>
         <input
           type='text'
           className='form-control'

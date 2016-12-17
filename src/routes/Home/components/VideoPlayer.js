@@ -1,14 +1,14 @@
 import React from 'react'
-import youTubePlayer from 'youtube-player' 
+import youTubePlayer from 'youtube-player'
 
 class VideoPlayer extends React.Component {
 
   constructor (props) {
     super(props)
-    
+
     this.internalPlayer = null
   }
-  
+
   componentDidMount() {
     this.createPlayer()
   }
@@ -36,14 +36,14 @@ class VideoPlayer extends React.Component {
     this.internalPlayer.on('stateChange', this.onPlayerStateChange)
   }
 
-  
+
 
   render () {
     return (
-      <span>
+      <div className="ViewBox-video">
         <div id={this.props.container}>
-        </div>  
-      </span>
+        </div>
+      </div>
     )
   }
 }

@@ -1,0 +1,23 @@
+.ViewBox {
+  width: 100%;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  align-content: space-between;
+  flex-direction: column;
+}
+
+.ViewBox-comments {
+  width: 100%;
+}
+
+@media screen and (min-width: 992px) {
+  .ViewBox {
+    flex-direction: row;
+  }
+
+  .ViewBox-comments {
+    padding-left:10px;
+  }
+}
