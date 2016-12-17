@@ -20,7 +20,6 @@ class SearchBar extends React.Component {
 
   _onEnter (event) {
     if (event.charCode === 13) {
-      console.log('entered')
       this.props.SearchVideo(this.state.typed)
     }
   }

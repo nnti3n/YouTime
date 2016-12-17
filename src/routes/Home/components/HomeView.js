@@ -5,6 +5,8 @@ import CommentList from './CommentList'
 import VideoPlayer from './VideoPlayer'
 import CommentBar from './CommentBar.js'
 
+const YOUTIME_API = `http://youtime.herokuapp.com`
+  
 class HomeView extends React.Component {
   constructor (props) {
     super(props)
@@ -53,7 +55,8 @@ class HomeView extends React.Component {
           time: 3000 // at 1.5 sec or 1500 milisec
         }
       ],
-      currentComment: []
+      currentComment: [],
+      videoRemoteId: ''
     }
   }
 
@@ -64,27 +67,62 @@ class HomeView extends React.Component {
       currentComment: this.state.commentList.filter((data) => {
         return (data.time <= currentTime) && data.time + 5000 >= currentTime
       })
-    });
+    })
+  }
+  postComment = (commentObject, callback) => {
+    var option = {
+      method: 'POST',
+      body: JSON.stringify(commentObject),
+      mode: 'cors',
+      headers: new Headers({"Content-Type": "application/json"})
+    }
+    fetch(YOUTIME_API + "/video/" + this.state.videoRemoteId, option)
+      .then(res => {
+        if (res.ok) {
+          res.json().then((data) => {
+            this.setState({
+              commentList: this.state.commentList.push(data)
+            })
+            callback(null, commentObject);
+          })
+        }else{
+          callback("CONNECT_ERROR")
+        }
+      })
+
+  }
+  fetchVideoComment(videoId) {
+    fetch(YOUTIME_API + `/video/link?site=youtube&id=${videoId}`)
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({
+          videoRemoteId: data.id,
+          commentList: data.comment
+        })
+      })
   }
 
-  postComment = (currentTime) => {
-    currentTime *= 1000;
-    this.setState({
-      currentTime: currentTime,
-      currentComment: this.state.commentList.filter((data) => {
-        return (data.time <= currentTime) && data.time + 5000 >= currentTime
+  SearchVideo = (link) => {
+    if (link.indexOf('youtube') !== -1 || link.indexOf('youtu.be') !== -1) {
+      var regex = /(.+(\?v=|\/))|((\?|&).+)/g
+      var videoId = link.replace(regex, '') 
+      this.setState({
+        videoId: videoId 
       })
-    });
+      this.fetchVideoComment(videoId)
+    } else {
+      return 
+    }
   }
 
   render () {
     return (
       <div>
         <h4>Welcome to YouTime</h4>
-        <SearchBar SearchVideo={this.props.SearchVideo} />
-        <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} postComment={}/>
+        <SearchBar SearchVideo={this.SearchVideo} />
+        <VideoPlayer videoId={this.state.videoId} container={this.state.container} updateComment={this.updateComment} />
         <CommentList />
-        <CommentBar currentTime={this.state.currentTime} currentComment={this.state.currentComment}/>
+        <CommentBar currentComment={this.state.currentComment} currentTime={this.state.currentTime} postComment={this.postComment}/>
       </div>
     )
   }

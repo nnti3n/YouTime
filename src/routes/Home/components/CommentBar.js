@@ -12,8 +12,13 @@ class CommentBar extends React.Component {
         if (event.charCode === 13) {
             var commentToBePost = {
                 content: event.target.value,
-                time: this.props.currentTime
+                time: Math.floor(this.props.currentTime)
             }
+            this.props.postComment(commentToBePost, (err, comment) => {
+                if(err){
+                    console.log(err);
+                }
+            });
         }
     }
     render = () => (<div>

@@ -1,11 +1,13 @@
 import React from 'react'
 
+
+let id = 0;
 class CommentList extends React.Component {
   
   constructor (props) {
     super(props)
   }
-
+  
   render() {
     return (
       <div>
@@ -15,7 +17,7 @@ class CommentList extends React.Component {
                 <tbody>
                   {
                     this.props.commentList.map(comment =>
-                      <tr key = {comment.id} >
+                      <tr key = {id++} >
                         <td>{comment.content}</td>
                       </tr>
                     )
