@@ -61,6 +61,7 @@ class HomeView extends React.Component {
       })
     })
   }
+
   postComment = (commentObject, callback) => {
     var option = {
       method: 'POST',
@@ -73,7 +74,7 @@ class HomeView extends React.Component {
         if (res.ok) {
           res.json().then((data) => {
             this.setState({
-              commentList: this.state.commentList.push(data)
+              commentList: data.comment
             })
             callback(null, commentObject);
           })
@@ -81,8 +82,8 @@ class HomeView extends React.Component {
           callback("CONNECT_ERROR")
         }
       })
-
   }
+
   fetchVideoComment(videoId) {
     fetch(YOUTIME_API + `/video/link?site=youtube&id=${videoId}`)
       .then(res => res.json())
@@ -112,7 +113,7 @@ class HomeView extends React.Component {
 
   commentClickHandler = (comment) => {
     this.setState({
-      seekTo: comment.time==0? 1: comment.time/1000,
+      seekTo: comment.time == 0 ? 1: comment.time/1000,
       justSeek: true
     })
   }
@@ -151,8 +152,8 @@ class HomeView extends React.Component {
             />
           </div>
           <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler} />
+          <SuggestVideo videoList={this.state.suggestVideo} videoClickHandler={this.videoClickHandler}/>
         </div>
-        <SuggestVideo videoList={this.state.suggestVideo} videoClickHandler={this.videoClickHandler}/>
       </div>
     )
   }

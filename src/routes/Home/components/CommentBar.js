@@ -6,6 +6,7 @@ var sampleCurrentTime = 1500;
 
 let id = 0;
 class CommentBar extends React.Component {
+
     constructor(props) {
         super(props);
         this._onEnter = this._onEnter.bind(this)
@@ -13,6 +14,7 @@ class CommentBar extends React.Component {
             currentComment: this.props.currentComment
         };
     }
+
     _onEnter(event) {
         if (event.charCode === 13) {
             var commentToBePost = {
@@ -24,8 +26,10 @@ class CommentBar extends React.Component {
                     console.log(err);
                 }
             });
+            this.refs.commentContent.value = ''
         }
     }
+
     _onClick(event) {
       event.preventDefault();
       var commentToBePost = {
@@ -38,13 +42,14 @@ class CommentBar extends React.Component {
         }
       });
     }
+
     render = () => {
       const {currentComment, currentTime} = this.props
       return (
         <div>
           <span>{toStringTime(currentTime)}</span> -
           <div className='ViewBox-group'>
-            <textarea onKeyPress={this._onEnter} placeholder='Enter Comment' className='ViewBox-input' />
+            <textarea onKeyPress={this._onEnter} placeholder='Enter Comment' className='ViewBox-input' ref='commentContent'/>
             <button onClick={this._onClick} className='ViewBox-input-submit'>Submit</button>
           </div>
         </div>
