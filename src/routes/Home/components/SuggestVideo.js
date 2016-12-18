@@ -11,7 +11,7 @@ class SuggestVideo extends React.Component {
               ? videoList.map(video =>
                 <div className='Grid-item' key={videoList.indexOf(video)} onClick={
                   () => videoClickHandler(video)}>
-                  <img src={video.thumbnail} width='250' height='180' />
+                  <img src={video.thumbnail} width='250' height='180'/>
                 </div>
                 )
               : ' ' }

@@ -19,26 +19,7 @@ class HomeView extends React.Component {
       currentComment: [],
       videoRemoteId: '',
       seekTo: 0,
-      suggestVideo: [
-        {
-          id: 'uK16TLBzWYo',
-          thumbnail: 'http://img.youtube.com/vi/uK16TLBzWYo/0.jpg'
-        },
-        {
-          id: 'RgKAFK5djSk',
-          thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
-        }
-        ,
-        {
-          id: 'RgKAFK5djSk',
-          thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
-        }
-        ,
-        {
-          id: 'RgKAFK5djSk',
-          thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
-        }
-      ]
+      suggestVideo: []
     }
     this.commentClickHandler = this.commentClickHandler.bind(this)
     this.updateComment = this.updateComment.bind(this)
@@ -89,6 +70,17 @@ class HomeView extends React.Component {
         })
       })
   }
+  
+  fetchSuggestedVideo = (limit) => {
+     fetch(YOUTIME_API + `/video/random?limit=${limit}`)
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({
+          suggestVideo: data
+        })
+      })
+
+  }
 
   SearchVideo = (link) => {
     if (link.indexOf('youtube') !== -1 || link.indexOf('youtu.be') !== -1) {
@@ -100,6 +92,7 @@ class HomeView extends React.Component {
 
       })
       this.fetchVideoComment(videoId)
+      this.fetchSuggestedVideo(4)
     } else {
       console.log('invalid url')
       return
@@ -114,8 +107,9 @@ class HomeView extends React.Component {
   }
 
   videoClickHandler = (video) => {
+    console.log(video)
     this.setState({
-      videoId: video.id
+      videoId: video.url.id
     })
   }
 
