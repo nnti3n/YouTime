@@ -15,6 +15,7 @@ class CommentBar extends React.Component {
     }
     _onEnter(event) {
         if (event.charCode === 13) {
+            event.preventDefault()
             var commentToBePost = {
                 content: event.target.value,
                 time: Math.floor(this.props.currentTime)
