@@ -111,6 +111,7 @@ class HomeView extends React.Component {
     this.setState({
       videoId: video.url.id
     })
+    this.fetchVideoComment(video.url.id)
   }
 
   changeJustSeek = (justSeek) => {
