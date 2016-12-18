@@ -88,6 +88,8 @@
     "css-loader": "^0.26.0",
     "cssnano": "^3.7.4",
     "debug": "^2.2.0",
+    "entities": "^1.1.1",
+    "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.0",
     "file-loader": "^0.9.0",
     "fs-extra": "^1.0.0",
@@ -109,11 +111,10 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.14",
-    "yargs": "^6.3.0",
-    "youtube-player": "^4.0.2",
-    "express": "^4.14.0",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack-hot-middleware": "^2.12.2",
+    "yargs": "^6.3.0",
+    "youtube-player": "^4.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
