@@ -17,6 +17,7 @@ class CommentBar extends React.Component {
 
     _onEnter(event) {
         if (event.charCode === 13) {
+            event.preventDefault()
             var commentToBePost = {
                 content: event.target.value,
                 time: Math.floor(this.props.currentTime)
@@ -46,9 +47,9 @@ class CommentBar extends React.Component {
     render = () => {
       const {currentComment, currentTime} = this.props
       return (
-        <div>
+        <div className='ViewBox-group'>
           <span>{toStringTime(currentTime)}</span> -
-          <div className='ViewBox-group'>
+          <div className='ViewBox-group-comment'>
             <textarea onKeyPress={this._onEnter} placeholder='Enter Comment' className='ViewBox-input' ref='commentContent'/>
             <button onClick={this._onClick} className='ViewBox-input-submit'>Submit</button>
           </div>

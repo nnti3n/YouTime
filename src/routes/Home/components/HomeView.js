@@ -152,8 +152,8 @@ class HomeView extends React.Component {
             />
           </div>
           <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler} />
-          <SuggestVideo videoList={this.state.suggestVideo} videoClickHandler={this.videoClickHandler}/>
         </div>
+          <SuggestVideo videoList={this.state.suggestVideo} videoClickHandler={this.videoClickHandler}/>
       </div>
     )
   }
