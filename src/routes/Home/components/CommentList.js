@@ -1,4 +1,5 @@
 import React from 'react'
+import toStringTime from '../../../Helper/Helper'
 
 class CommentList extends React.Component {
 
@@ -10,12 +11,14 @@ class CommentList extends React.Component {
           {
             commentList
               ? commentList.map(comment =>
-                <li key={commentList.indexOf(comment)} onClick={() => commentClickHandler(comment)}>
-                  {comment.content}
+                <li className='u-margin-bottom--12' key={commentList.indexOf(comment)} onClick={
+                  () => commentClickHandler(comment)}>
+                  <p><a>{toStringTime(comment.time)}</a> - {comment.content}</p>
                 </li>, this
                 )
               : ' ' }
         </ul>
+        <div className='ViewBox-listFilter' />
       </div>
     )
   }
