@@ -38,11 +38,6 @@ class HomeView extends React.Component {
           id: 'RgKAFK5djSk',
           thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
         }
-        ,
-        {
-          id: 'RgKAFK5djSk',
-          thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
-        }
       ]
     }
     this.commentClickHandler = this.commentClickHandler.bind(this)
@@ -117,17 +112,17 @@ class HomeView extends React.Component {
       justSeek: true
     })
   }
-  
+
   videoClickHandler = (video) => {
     this.setState({
       videoId: video.id
     })
   }
-  
+
   changeJustSeek = (justSeek) => {
     this.setState({ justSeek: justSeek })
   }
-  
+
   render() {
     return (
       <div>
@@ -153,6 +148,7 @@ class HomeView extends React.Component {
           </div>
           <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler} />
         </div>
+        <h4 className='u-margin-bottom--12'>Suggested Videos</h4>
           <SuggestVideo videoList={this.state.suggestVideo} videoClickHandler={this.videoClickHandler}/>
       </div>
     )

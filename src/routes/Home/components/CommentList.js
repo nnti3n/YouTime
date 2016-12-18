@@ -13,7 +13,7 @@ class CommentList extends React.Component {
               ? commentList.map(comment =>
                 <li className='u-margin-bottom--12' key={commentList.indexOf(comment)} onClick={
                   () => commentClickHandler(comment)}>
-                  <p><a>{toStringTime(comment.time)}</a> - {comment.content}</p>
+                  <div><a>{toStringTime(comment.time)}</a> - {comment.content}</div>
                 </li>, this
                 )
               : ' ' }

@@ -5,18 +5,16 @@ class SuggestVideo extends React.Component {
   render () {
     const {videoList, videoClickHandler} = this.props
     return (
-      <div>
-        <ul>
+      <div className='Grid'>
           {
             videoList
               ? videoList.map(video =>
-                <li key={videoList.indexOf(video)} onClick={
+                <div className='Grid-item' key={videoList.indexOf(video)} onClick={
                   () => videoClickHandler(video)}>
-                  <img src={video.thumbnail}></img>
-                </li> 
+                  <img src={video.thumbnail} width='250' height='180' />
+                </div>
                 )
               : ' ' }
-        </ul>
       </div>
     )
   }
