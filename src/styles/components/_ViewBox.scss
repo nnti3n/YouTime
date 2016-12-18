@@ -8,8 +8,9 @@
 }
 
 .ViewBox-comments {
+  margin-left: 12px;
   width: 100%;
-  background-color: white;
+  background-color: $background;
   overflow: scroll;
   a {
     font-weight: bold;
@@ -20,6 +21,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  span {
+    font-weight: bold;
+  }
 }
 
 .ViewBox-group-comment {
@@ -53,7 +57,7 @@
   position: absolute;
   white-space: nowrap;
   right: 0;
-  margin-top: 6px;
+  margin-top: 10px;
   transition: all .2s;
   border: none;
 }

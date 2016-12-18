@@ -67,7 +67,7 @@ class VideoPlayer extends React.Component {
         this.props.changeJustSeek(false)
       }
       return (
-      <div className="ViewBox-video">
+      <div className="ViewBox-video u-margin-bottom--6">
         <div id={this.props.container}>
         </div>
       </div>
