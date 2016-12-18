@@ -42,9 +42,9 @@ class CommentBar extends React.Component {
     render = () => {
       const {currentComment, currentTime} = this.props
       return (
-        <div>
+        <div className='ViewBox-group'>
           <span>{toStringTime(currentTime)}</span> -
-          <div className='ViewBox-group'>
+          <div className='ViewBox-group-comment'>
             <textarea onKeyPress={this._onEnter} placeholder='Enter Comment' className='ViewBox-input' />
             <button onClick={this._onClick} className='ViewBox-input-submit'>Submit</button>
           </div>
