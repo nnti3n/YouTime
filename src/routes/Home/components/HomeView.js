@@ -1,5 +1,4 @@
 import React from 'react'
-import './HomeView.scss'
 import SearchBar from './SearchBar'
 import CommentList from './CommentList'
 import VideoPlayer from './VideoPlayer'
@@ -12,49 +11,10 @@ class HomeView extends React.Component {
     super(props)
 
     this.state = {
-      videoId : '-2U0Ivkn2Ds',
+      videoId : '',
       container: 'youtube-player',
       currentTime: 0,
-      commentList: [
-        {
-          content: "1st comment",
-          time: 1500 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1510 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1520 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1530 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1540 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1550 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1560 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1570 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1580 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1800 // at 1.5 sec or 1500 milisec
-        },{
-          content: "1st comment",
-          time: 1700 // at 1.5 sec or 1500 milisec
-        },
-        {
-          content: "2nd comment",
-          time: 10000 // at 1.5 sec or 1500 milisec
-        }
-      ],
+      commentList: [],
       currentComment: [],
       videoRemoteId: '',
       seekTo: 0
@@ -136,26 +96,28 @@ class HomeView extends React.Component {
   render() {
     return (
       <div>
-        <div className='Menu u-margin-bottom--24'>
-          <h4 className='Menu-title'>YouTime</h4>
+        <div className='Menu u-margin-bottom--40'>
+          <h2 className='Menu-title'>YouTime</h2>
           <SearchBar SearchVideo={this.SearchVideo} />
         </div>
         <div className='ViewBox u-margin-bottom--24'>
-          <VideoPlayer
-            videoId={this.state.videoId}
-            container={this.state.container}
-            updateComment={this.updateComment}
-            seekTo={this.state.seekTo}
-            justSeek={this.state.justSeek}
-            changeJustSeek={this.changeJustSeek}
-          />
-          <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler}/>
+          <div>
+            <VideoPlayer
+              videoId={this.state.videoId}
+              container={this.state.container}
+              updateComment={this.updateComment}
+              seekTo={this.state.seekTo}
+              justSeek={this.state.justSeek}
+              changeJustSeek={this.changeJustSeek}
+            />
+            <CommentBar
+              currentComment={this.state.currentComment}
+              currentTime={this.state.currentTime}
+              postComment={this.postComment}
+            />
+          </div>
+          <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler} />
         </div>
-        <CommentBar
-          currentComment={this.state.currentComment}
-          currentTime={this.state.currentTime}
-          postComment={this.postComment}
-        />
       </div>
     )
   }

@@ -2,14 +2,58 @@
   width: 100%;
   background-color: #f5f5f5;
   border-radius: 5px;
-  padding: 10px;
+  padding: 12px;
   display: flex;
   align-content: space-between;
   flex-direction: column;
+  position: relative;
+  height: 450px;
 }
 
 .ViewBox-comments {
   width: 100%;
+  overflow: scroll;
+  a {
+    font-weight: bold;
+  }
+}
+
+.ViewBox-group {
+  display: inline-block;
+}
+
+.ViewBox-input {
+  resize: none;
+  border: 1px solid $gray;
+}
+
+.ViewBox-input:focus {
+  outline: 0;
+  box-shadow: 0 0 3px rgba(100,65,164,.2);
+  border: 1px solid #cbc8d0;
+}
+
+.ViewBox-input-submit {
+  background-color: $purple;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 3rem;
+  padding: 0 1rem;
+  margin: 0;
+  position: relative;
+  white-space: nowrap;
+  transition: all .2s;
+  border: none;
+}
+
+.ViewBox-listFilter {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  height: 10px;
 }
 
 @media screen and (min-width: 992px) {

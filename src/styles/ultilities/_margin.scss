@@ -1,4 +1,4 @@
-$values: (0, 6, 12, 18, 24, 36, 48, 72);
+$values: (0, 6, 12, 18, 24, 36, 40, 72);
 
 @each $value in $values {
   .u-margin-bottom--#{$value} {
