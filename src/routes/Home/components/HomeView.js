@@ -2,7 +2,8 @@ import React from 'react'
 import SearchBar from './SearchBar'
 import CommentList from './CommentList'
 import VideoPlayer from './VideoPlayer'
-import CommentBar from './CommentBar.js'
+import CommentBar from './CommentBar'
+import SuggestVideo from './SuggestVideo'
 
 const YOUTIME_API = `http://youtime.herokuapp.com`
 
@@ -17,7 +18,32 @@ class HomeView extends React.Component {
       commentList: [],
       currentComment: [],
       videoRemoteId: '',
-      seekTo: 0
+      seekTo: 0,
+      suggestVideo: [
+        {
+          id: 'uK16TLBzWYo',
+          thumbnail: 'http://img.youtube.com/vi/uK16TLBzWYo/0.jpg'
+        },
+        {
+          id: 'RgKAFK5djSk',
+          thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
+        }
+        ,
+        {
+          id: 'RgKAFK5djSk',
+          thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
+        }
+        ,
+        {
+          id: 'RgKAFK5djSk',
+          thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
+        }
+        ,
+        {
+          id: 'RgKAFK5djSk',
+          thumbnail: 'http://img.youtube.com/vi/RgKAFK5djSk/0.jpg'
+        }
+      ]
     }
     this.commentClickHandler = this.commentClickHandler.bind(this)
     this.updateComment = this.updateComment.bind(this)
@@ -90,9 +116,17 @@ class HomeView extends React.Component {
       justSeek: true
     })
   }
+  
+  videoClickHandler = (video) => {
+    this.setState({
+      videoId: video.id
+    })
+  }
+  
   changeJustSeek = (justSeek) => {
     this.setState({ justSeek: justSeek })
   }
+  
   render() {
     return (
       <div>
@@ -118,6 +152,7 @@ class HomeView extends React.Component {
           </div>
           <CommentList commentList={this.state.commentList} commentClickHandler={this.commentClickHandler} />
         </div>
+        <SuggestVideo videoList={this.state.suggestVideo} videoClickHandler={this.videoClickHandler}/>
       </div>
     )
   }
