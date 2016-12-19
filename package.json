@@ -56,7 +56,7 @@
       }
     },
     "start": {
-      "command": "npm run compile && node bin/dev-server",
+      "command": "node bin/dev-server",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
