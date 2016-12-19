@@ -20,12 +20,19 @@
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
     "codecov": "cat coverage/*/lcov.info | codecov",
-    "postinstall": "npm run compile"
+    "postinstall": "better-npm-run compile:prod"
   },
   "betterScripts": {
     "compile": {
       "command": "node bin/compile",
       "env": {
+        "DEBUG": "app:*"
+      }
+    },
+    "compile:prod": {
+      "command": "node bin/compile",
+      "env": {
+        "NODE_ENV": "production",
         "DEBUG": "app:*"
       }
     },
